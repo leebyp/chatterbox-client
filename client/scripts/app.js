@@ -7,6 +7,7 @@ app.fetch = function(){
 	    type: "GET",
 	    dataType: 'json',
 	    success: function(data){
+	    	console.log("updating correctly with fetch");
 	    	app.data = data.results;
 	    	app.display(app.particular, app.currentDisplayType);
 	    	app.updateRooms();
@@ -86,10 +87,18 @@ app.updateRooms = function(){
 	}
 }
 
+app.init = function(){
+	var self = this;
+	app.fetch();
+	setInterval(function(){
+		self.fetch();
+	}, 5000);
+}
+
 app.friends = [];
 
-app.currentDisplayType = 'person';
+app.currentDisplayType = 'all';
 app.particular = 'anonymous';
 
 
-app.fetch();
+app.init();
