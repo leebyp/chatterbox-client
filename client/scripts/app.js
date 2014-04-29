@@ -62,6 +62,9 @@ app.send = function(){
 };
 
 app.updateUsers = function(){
+
+	$('.users ul li').remove();
+
 	var users = [];
 	for (var i=0; i<app.data.length; i++){
 		var instance = app.data[i];
@@ -75,6 +78,9 @@ app.updateUsers = function(){
 }
 
 app.updateRooms = function(){
+
+	$('.rooms ul li').remove();
+
 	var rooms = [];
 	for (var i=0; i<app.data.length; i++){
 		var instance = app.data[i];
