@@ -133,17 +133,20 @@ $(document).ready(function(){
 		app.currentDisplayType = 'person';
 		app.particular = String($(this).text());
 		app.display(app.particular, app.currentDisplayType);
+		$('.chat p').text('CurrentRoom: all, UserMessages: '+app.particular);
 	});
 
 	$('.rooms ul').on('click','li', function(){
 		app.currentDisplayType = 'room';
 		app.particular = String($(this).text());
 	    app.display(app.particular, app.currentDisplayType);
+	    $('.chat p').text('CurrentRoom: '+app.particular+', UserMessages: all');
 	});
 
 	$('#main h1').on('click', function(){
 		app.currentDisplayType = 'all';
 	    app.display(app.particular, app.currentDisplayType);
+	    $('.chat p').text('CurrentRoom: all, UserMessages: all');
 	});
 
 	$('#newmessagebutton').on('click', function(){
