@@ -5,6 +5,11 @@ body {
     font-family: arial, sans-serif;
 }
 
+div, li {
+    border: 2px solid black;
+    margin: 20px 10px;
+}
+
 #main {
     width: 500px;
     margin: auto;
