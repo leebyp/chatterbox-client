@@ -50,13 +50,16 @@ app.display = function(particular, type){
 
 };
 
-app.send = function(){
+app.send = function(data){
 
 	$.ajax({
 		url: "https://api.parse.com/1/classes/chatterbox",
 	    type: 'POST',
 	    data: JSON.stringify(data),
-	    contentType: "application/json"
+	    contentType: "application/json",
+	    success: function(){
+	    	console.log('sending correctly with send');
+	    }
 	});
 
 };
@@ -143,5 +146,16 @@ $(document).ready(function(){
 		app.display();
 	});
 
+	$('#newmessagebutton').on('click', function(){
+		var text = $('#newmessagetext').val();
+		var room = $('#newmessageroom').val();
+		var user = $('#newmessageuser').val();
+		var message = {
+			username: user,
+			text: text,
+			roomname: room
+		};
+		app.send(message);
+	})
 
 })
