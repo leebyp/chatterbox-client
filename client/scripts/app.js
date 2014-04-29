@@ -68,7 +68,7 @@ app.updateUsers = function(){
 	var users = [];
 	for (var i=0; i<app.data.length; i++){
 		var instance = app.data[i];
-		var username = '<li>' + $('<li/>').text(instance.username).html() + '</li>';
+		var username = '<li>'+ $('<li/>').text(instance.username).html() + '</button></li>';
 		users.push(username);
 	}
 	users = _.uniq(users);
@@ -104,7 +104,44 @@ app.init = function(){
 app.friends = [];
 
 app.currentDisplayType = 'all';
-app.particular = 'anonymous';
+app.particular = undefined;
 
 
-app.init();
+
+$(document).ready(function(){
+	
+	app.init();
+
+	$('.users ul').on('click','li', function(){
+		var alreadyFriend = false;
+		var newFriend = '<li>' + $(this).text() + '</li>';
+		for (var i=0; i<app.friends.length; i++){
+			if (app.friends[i] === newFriend){
+				return alreadyFriend = true;
+			}
+		}
+		if (!alreadyFriend){
+			app.friends.push(newFriend);
+			$('.friends ul').append(newFriend);
+		}
+	});
+
+	$('.friends ul').on('click','li', function(){
+		app.currentDisplayType = 'person';
+		app.particular = String($(this).text());
+		app.display();
+	});
+
+	$('.rooms ul').on('click','li', function(){
+		app.currentDisplayType = 'room';
+		app.particular = String($(this).text());
+		app.display();
+	});
+
+	$('#main h1').on('click', function(){
+		app.currentDisplayType = 'all';
+		app.display();
+	});
+
+
+})
