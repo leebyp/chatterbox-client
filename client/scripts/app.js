@@ -132,18 +132,18 @@ $(document).ready(function(){
 	$('.friends ul').on('click','li', function(){
 		app.currentDisplayType = 'person';
 		app.particular = String($(this).text());
-		app.display();
+		app.display(app.particular, app.currentDisplayType);
 	});
 
 	$('.rooms ul').on('click','li', function(){
 		app.currentDisplayType = 'room';
 		app.particular = String($(this).text());
-		app.display();
+	    app.display(app.particular, app.currentDisplayType);
 	});
 
 	$('#main h1').on('click', function(){
 		app.currentDisplayType = 'all';
-		app.display();
+	    app.display(app.particular, app.currentDisplayType);
 	});
 
 	$('#newmessagebutton').on('click', function(){
@@ -156,6 +156,7 @@ $(document).ready(function(){
 			roomname: room
 		};
 		app.send(message);
+		app.display(app.particular, app.currentDisplayType);
 	})
 
 })
