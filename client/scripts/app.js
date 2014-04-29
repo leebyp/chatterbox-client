@@ -8,7 +8,9 @@ app.fetch = function(){
 	    dataType: 'json',
 	    success: function(data){
 	    	app.data = data.results;
-	    	app.display(undefined, app.currentDisplayType);
+	    	app.display(app.particular, app.currentDisplayType);
+	    	app.updateRooms();
+	    	app.updateUsers();
 	    }
 	});
 };
@@ -47,8 +49,6 @@ app.display = function(particular, type){
 
 };
 
-
-
 app.send = function(){
 
 	$.ajax({
@@ -60,15 +60,36 @@ app.send = function(){
 
 };
 
-app.rooms = [];
+app.updateUsers = function(){
+	var users = [];
+	for (var i=0; i<app.data.length; i++){
+		var instance = app.data[i];
+		var username = '<li>' + $('<li/>').text(instance.username).html() + '</li>';
+		users.push(username);
+	}
+	users = _.uniq(users);
+	for (var i=0; i<users.length; i++){
+		$('.users ul').append(users[i]);
+	}
+}
 
-app.users = [];
+app.updateRooms = function(){
+	var rooms = [];
+	for (var i=0; i<app.data.length; i++){
+		var instance = app.data[i];
+		var roomname = '<li>' + $('<li/>').text(instance.roomname).html() + '</li>';
+		rooms.push(roomname);
+	}
+	rooms = _.uniq(rooms);
+	for (var i=0; i<rooms.length; i++){
+		$('.rooms ul').append(rooms[i]);
+	}
+}
 
 app.friends = [];
 
-
-app.currentDisplayType = 'all';
-
+app.currentDisplayType = 'person';
+app.particular = 'anonymous';
 
 
 app.fetch();
