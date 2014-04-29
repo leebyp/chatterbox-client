@@ -11,11 +11,23 @@ div, li {
 }
 
 #main {
-    width: 500px;
-    margin: auto;
+    width: 45%;
+    /*margin: auto;*/
+    float: left;
     text-align: left;
     background: white;
-    padding: 50px 60px;
+    /*padding: 50px 60px;*/
+    border: solid #ddd;
+    border-width: 0 1px 1px 1px;
+}
+
+#rightbar {
+    width: 45%;
+    /*margin: auto;*/
+    float: right;
+    text-align: left;
+    background: white;
+    /*padding: 50px 60px;*/
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
 }
